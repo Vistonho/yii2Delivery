@@ -23,6 +23,8 @@ $this->registerCssFile('/web/test_css/about.css');
     <p>Не стесняйтесь обращаться, мы всегда готовы ответить на ваши вопросы, предоставить помощь или услышать ваши отзывы.</p>
     <code><?= __FILE__ ?></code>
 
+    <div></div>
+
     <div class="my-images" style="display: flex; gap: 20px;">
         <img src=" <?= Yii::getAlias('@web') . '/test_images/2026.jpg' ?> " alt="2026year" style="max-width: 50%;">
 
