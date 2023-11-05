@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Окт 31 2023 г., 06:03
+-- Время создания: Ноя 05 2023 г., 21:59
 -- Версия сервера: 8.0.30
 -- Версия PHP: 8.1.9
 
@@ -151,6 +151,16 @@ CREATE TABLE `role` (
   `title` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Дамп данных таблицы `role`
+--
+
+INSERT INTO `role` (`id`, `title`) VALUES
+(1, 'admin'),
+(2, 'client'),
+(3, 'manager'),
+(4, 'courier');
+
 -- --------------------------------------------------------
 
 --
@@ -179,8 +189,18 @@ CREATE TABLE `user` (
   `password` varchar(255) NOT NULL,
   `photo` varchar(255) DEFAULT NULL,
   `role_id` int UNSIGNED NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `auth_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Дамп данных таблицы `user`
+--
+
+INSERT INTO `user` (`id`, `name`, `surname`, `patronymic`, `login`, `email`, `phone`, `password`, `photo`, `role_id`, `created_at`, `auth_key`) VALUES
+(7, 'admin', 'admin', 'admin', 'admin', 'admin@admin.ru', '123', '$2y$13$XoDYiio0UrK4JXBHgtjzQuLwX7kT146KCnR/LbIzhWl2sCJgFizou', 'owW8h.png', 2, '2023-11-05 09:48:31', 'KXCA0O8OFud886hLwe2BvuYzD53ZospB'),
+(8, 'qwe', 'qwe', 'qwe', 'qwe', 'qwe@qwe.ru', 'qwe', '$2y$13$gb/EJcEkPee8eJkZRQBpfurqQANQNQISPzyjKvnrLtqH2xJv5QiJy', 'profile.jpg', 2, '2023-11-05 09:49:18', '1yRQ5fBRigtoMMlJSw6lCYaJc7KGLW52'),
+(9, 'qwe', 'qwe', 'qwe', 'www', 'www@www.ru', '123', '$2y$13$UGoESvUDf6RgaFHCtpW2Uur0UbnCchhUKnJ4SgQ30dg3xXhnZp3Oa', 'profile.jpg', 2, '2023-11-05 09:53:05', '2S0fI-Me-TMUzOb9o6gBw1tLMEriM4-G');
 
 -- --------------------------------------------------------
 
@@ -190,9 +210,22 @@ CREATE TABLE `user` (
 
 CREATE TABLE `user_test` (
   `id` int UNSIGNED NOT NULL,
-  `login` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL
+  `login` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `authKey` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Дамп данных таблицы `user_test`
+--
+
+INSERT INTO `user_test` (`id`, `login`, `password`, `authKey`) VALUES
+(3, 'qwe', '$2y$13$9eObylyFfj7FZtlEIsnAG.in5EbiVbTa4ouIY/KGjGcmqhBOF.E2q', 'yOFJ3aQuh0ulHAg9r-Snxsug79T1Pg9r'),
+(4, 'vitalik', '$2y$13$d8Vpl1cs2wSPO6DHoJ5rKO48mF6wepmLtbXsS/o1LAPf0qYLkBOZG', 'ThCMjxyIq8ThVeDUsftfODWF0m420yTE'),
+(5, 'test', '$2y$13$vhA.nZg9AizYtWeZFdJnROMhc0BKeT/ElTX6dGhRs2TLwpaTJsA3u', 'sek_VzLUmOgJMCrgBwPJpReog9Ubv9Hi'),
+(6, 'q', '$2y$13$W9hHZrAKVhCPVEVWq0xOo.ORvWEgMnjLvXdinX37Xury47rfks9AW', 'R_iRukm2W0WhlccxkLt2HlhYGQpzCKZf'),
+(7, '1', '$2y$13$kZ8w./uNx/oUgZsldRRb6.8aI8xuWcM0UHQes.glVwFl61l14BLxu', 'jPeBhWZPTKrZA7PIoT8XdRqvBSdoc57s'),
+(8, 'one', '$2y$13$B./.GVz.yAJObkPurKPzrehD7t7PsHWQ4HFfrW9/uLNNyvLCDqUMu', 'zTcGsM_32qTgJH8csG1dMIz1_cGcWdX_');
 
 --
 -- Индексы сохранённых таблиц
@@ -343,7 +376,7 @@ ALTER TABLE `report`
 -- AUTO_INCREMENT для таблицы `role`
 --
 ALTER TABLE `role`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `status`
@@ -355,13 +388,13 @@ ALTER TABLE `status`
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT для таблицы `user_test`
 --
 ALTER TABLE `user_test`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
