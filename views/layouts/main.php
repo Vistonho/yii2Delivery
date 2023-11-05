@@ -56,8 +56,18 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                     . Html::endForm()
                     . '</li>',
             Yii::$app->user->identity ? ['label' => 'Личный кабинет', 'url' => ['/site/profile']] : '',
+
+            
         ]
     ]);
+
+    echo Yii::$app->user->identity ? 
+        "<li class='' style='margin-left: auto; display: flex; gap: 30px; align-items: center;'>
+            <a class='' href='".$_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST']."/web/site/profile' style='text-decoration: none; color: #f0f0f0;'>Личный кабинет</a>
+            <img src='/web/test_images/" . Yii::$app->user->identity->photo . "' alt='avatar' style='height: 50px; border-radius: 50px;'>   
+        </li>" : '';
+    // echo Html::img('@web/test_images/2027.jpg', ['alt' => '2027year', 'style' => "margin-left: auto; height: 50px; border-radius: 50px;"]); 
+
     NavBar::end();
     ?>
 </header>
