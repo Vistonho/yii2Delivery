@@ -85,7 +85,7 @@ class RegisterForm extends Model
 
             return $user ?? false;
         } else {
-            VarDumper::dump($this->errors, 10, true); die;
+            // VarDumper::dump($this->errors, 10, true); 
         }
     }
 }

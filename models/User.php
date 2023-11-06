@@ -181,5 +181,15 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return (Yii::$app->user->identity->role_id ==  Role::getRole('courier')) ? true : false;
     }
 
+    // Изменение фото
+
+    public function changePhoto($data) {
+        $model = self::findOne(Yii::$app->user->identity->id);
+        $userFileName = Yii::$app->security->generateRandomString(5) . '.' . $data->extension;
+        $data->saveAs('test_images/' . $userFileName);
+        $model->photo = $userFileName;
+        // var_dump($model);die;
+        return $model->save() ? true : false;
+    }
 
 }

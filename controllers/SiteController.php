@@ -12,6 +12,7 @@ use app\models\ContactForm;
 use app\models\RegisterForm;
 use app\models\User;
 use yii\helpers\Url;
+use yii\helpers\VarDumper;
 use yii\web\UploadedFile;
 
 class SiteController extends Controller
@@ -126,8 +127,20 @@ class SiteController extends Controller
      */
     public function actionProfile()
     {
-        return $this->render('profile');
+        $model = new User();
+        if (Yii::$app->request->isPost) {
+            if (!is_null(Yii::$app->request->post('photo-button'))) {
+                $file = UploadedFile::getInstance($model, 'photo');
+                if ($model->changePhoto($file)) {
+                    return Yii::$app->response->redirect(['site/profile']);
+                }
+                // VarDumper::dump($file, 10, true);die;
+            }
+            
+        }
+        return $this->render('profile', compact('model'));
     }
+
 
     /**
      * Displays about page.
