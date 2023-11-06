@@ -6,6 +6,7 @@ use app\models\User;
 use yii\helpers\Html;
 use yii\helpers\VarDumper;
 
+
 $this->title = 'Информация о компании';
 $this->params['breadcrumbs'][] = $this->title;
 
