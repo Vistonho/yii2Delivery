@@ -13,8 +13,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h2>О нас второй раз</h2>
 
     <p>
+
         This is the About page. You may modify the following file to customize its content!</br>
         Hello there!
+        Эта странца о нас переведа на русский язык благодаря трудолюбивым разработчикам!
+
     </p>
 
 
