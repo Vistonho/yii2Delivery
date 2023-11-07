@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Ноя 05 2023 г., 21:59
--- Версия сервера: 8.0.30
+-- Время создания: Ноя 07 2023 г., 16:05
+-- Версия сервера: 5.7.39
 -- Версия PHP: 8.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -28,9 +28,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `category` (
-  `id` int UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
   `title` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -39,12 +39,12 @@ CREATE TABLE `category` (
 --
 
 CREATE TABLE `comment` (
-  `id` int UNSIGNED NOT NULL,
-  `user_id` int UNSIGNED NOT NULL,
-  `product_id` int UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `product_id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `message` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -53,17 +53,17 @@ CREATE TABLE `comment` (
 --
 
 CREATE TABLE `order` (
-  `id` int UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `address` varchar(255) NOT NULL,
-  `user_id` int UNSIGNED NOT NULL,
-  `courier_id` int UNSIGNED NOT NULL,
-  `status_id` int UNSIGNED NOT NULL,
-  `count` int UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `courier_id` int(10) UNSIGNED NOT NULL,
+  `status_id` int(10) UNSIGNED NOT NULL,
+  `count` int(10) UNSIGNED NOT NULL,
   `cost` float UNSIGNED NOT NULL,
   `time_delivery` timestamp NOT NULL,
-  `pay_type_id` int UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `pay_type_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -72,12 +72,12 @@ CREATE TABLE `order` (
 --
 
 CREATE TABLE `order_item` (
-  `id` int UNSIGNED NOT NULL,
-  `count` int UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
+  `count` int(10) UNSIGNED NOT NULL,
   `cost` float UNSIGNED NOT NULL,
-  `product_id` int UNSIGNED NOT NULL,
-  `order_id` int UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `product_id` int(10) UNSIGNED NOT NULL,
+  `order_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -86,9 +86,9 @@ CREATE TABLE `order_item` (
 --
 
 CREATE TABLE `pay_type` (
-  `id` int UNSIGNED NOT NULL,
-  `title` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `id` int(10) UNSIGNED NOT NULL,
+  `title` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -97,19 +97,19 @@ CREATE TABLE `pay_type` (
 --
 
 CREATE TABLE `product` (
-  `id` int UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
   `title` varchar(255) NOT NULL,
   `photo` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `price` float NOT NULL,
-  `count` int UNSIGNED NOT NULL DEFAULT '0',
-  `like` tinyint UNSIGNED NOT NULL DEFAULT '0',
-  `dislike` tinyint UNSIGNED NOT NULL DEFAULT '0',
+  `count` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `like` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
+  `dislike` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
   `weight` float UNSIGNED NOT NULL,
   `kilocalories` float UNSIGNED NOT NULL,
   `shelf_life` varchar(255) NOT NULL,
-  `category_id` int UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `category_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -118,11 +118,11 @@ CREATE TABLE `product` (
 --
 
 CREATE TABLE `promotion` (
-  `id` int UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
   `photo` varchar(255) NOT NULL,
   `date_start` date NOT NULL,
   `date_end` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -131,14 +131,14 @@ CREATE TABLE `promotion` (
 --
 
 CREATE TABLE `report` (
-  `id` int UNSIGNED NOT NULL,
-  `user_id` int UNSIGNED NOT NULL,
-  `order_id` int UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `order_id` int(10) UNSIGNED NOT NULL,
   `message` text NOT NULL,
-  `status` tinyint UNSIGNED NOT NULL DEFAULT '0',
-  `parent_id` int UNSIGNED DEFAULT NULL,
+  `status` tinyint(3) UNSIGNED NOT NULL DEFAULT '0',
+  `parent_id` int(10) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -147,9 +147,9 @@ CREATE TABLE `report` (
 --
 
 CREATE TABLE `role` (
-  `id` int UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
   `title` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Дамп данных таблицы `role`
@@ -168,9 +168,9 @@ INSERT INTO `role` (`id`, `title`) VALUES
 --
 
 CREATE TABLE `status` (
-  `id` int UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
   `title` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -179,19 +179,19 @@ CREATE TABLE `status` (
 --
 
 CREATE TABLE `user` (
-  `id` int UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
   `surname` varchar(255) NOT NULL,
-  `patronymic` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `patronymic` varchar(255) DEFAULT NULL,
   `login` varchar(255) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
   `phone` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `photo` varchar(255) DEFAULT NULL,
-  `role_id` int UNSIGNED NOT NULL,
+  `role_id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `auth_key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `auth_key` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Дамп данных таблицы `user`
@@ -200,7 +200,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `name`, `surname`, `patronymic`, `login`, `email`, `phone`, `password`, `photo`, `role_id`, `created_at`, `auth_key`) VALUES
 (7, 'admin', 'admin', 'admin', 'admin', 'admin@admin.ru', '123', '$2y$13$XoDYiio0UrK4JXBHgtjzQuLwX7kT146KCnR/LbIzhWl2sCJgFizou', 'owW8h.png', 2, '2023-11-05 09:48:31', 'KXCA0O8OFud886hLwe2BvuYzD53ZospB'),
 (8, 'qwe', 'qwe', 'qwe', 'qwe', 'qwe@qwe.ru', 'qwe', '$2y$13$gb/EJcEkPee8eJkZRQBpfurqQANQNQISPzyjKvnrLtqH2xJv5QiJy', 'profile.jpg', 2, '2023-11-05 09:49:18', '1yRQ5fBRigtoMMlJSw6lCYaJc7KGLW52'),
-(9, 'qwe', 'qwe', 'qwe', 'www', 'www@www.ru', '123', '$2y$13$UGoESvUDf6RgaFHCtpW2Uur0UbnCchhUKnJ4SgQ30dg3xXhnZp3Oa', 'profile.jpg', 2, '2023-11-05 09:53:05', '2S0fI-Me-TMUzOb9o6gBw1tLMEriM4-G');
+(9, 'qwe', 'qwe', 'qwe', 'www', 'www@www.ru', '123', '$2y$13$UGoESvUDf6RgaFHCtpW2Uur0UbnCchhUKnJ4SgQ30dg3xXhnZp3Oa', 'profile.jpg', 2, '2023-11-05 09:53:05', '2S0fI-Me-TMUzOb9o6gBw1tLMEriM4-G'),
+(10, 'qwe', 'qwe', 'qwe', 'qweqwe', 'qweqwe@qwe.ru', 'qwe', '$2y$13$Dup46jLOPnK.4QhkWJ48l.3vSUgutxHBxazcD6MLUfreMHdHXIyBm', 'A0RsV.jpg', 2, '2023-11-07 13:00:55', 'H36yyE9IAHZFp4eh3Olg0Wv3MGEONAzM');
 
 -- --------------------------------------------------------
 
@@ -209,11 +210,11 @@ INSERT INTO `user` (`id`, `name`, `surname`, `patronymic`, `login`, `email`, `ph
 --
 
 CREATE TABLE `user_test` (
-  `id` int UNSIGNED NOT NULL,
-  `login` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `authKey` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id` int(10) UNSIGNED NOT NULL,
+  `login` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `authKey` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Дамп данных таблицы `user_test`
@@ -328,73 +329,73 @@ ALTER TABLE `user_test`
 -- AUTO_INCREMENT для таблицы `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `order`
 --
 ALTER TABLE `order`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `order_item`
 --
 ALTER TABLE `order_item`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `pay_type`
 --
 ALTER TABLE `pay_type`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `promotion`
 --
 ALTER TABLE `promotion`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `report`
 --
 ALTER TABLE `report`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `role`
 --
 ALTER TABLE `role`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `status`
 --
 ALTER TABLE `status`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT для таблицы `user_test`
 --
 ALTER TABLE `user_test`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
