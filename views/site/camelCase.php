@@ -14,6 +14,7 @@ $this->registerCssFile('/web/test_css/about.css');
 ?>
 <div class="site-about">
     <h1>CamelCase Routing Test</h1>
+    <h1>CamelCase Routing Test</h1>
 
     <div class="my-images" style="display: flex; gap: 20px;">
         <img src=" <?= Yii::getAlias('@web') . '/test_images/2026.jpg' ?> " alt="2026year" style="max-width: 50%;">
