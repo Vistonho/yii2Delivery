@@ -50,7 +50,7 @@ class RegisterForm extends \yii\base\Model
             [['email', 'login'], 'unique', 'targetClass' => User::class],
             ['email', 'email'],
             ['password_repeat', 'compare', 'compareAttribute' => 'password'],
-            ['rules', 'required', 'requiredValue' => 1],
+            ['rules', 'required', 'requiredValue' => 1, 'message' => 'Да здравствует Республика!'],
         ];
     }
 
