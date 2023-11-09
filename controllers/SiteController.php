@@ -133,7 +133,14 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()) {
                 // form inputs are valid, do something here
-                return;
+
+                if ($user = $model->register()) {
+                    if (Yii::$app->user->login($user)) {
+                        // return $this->goHome();
+                        return $this->goHome();
+                    }
+                }
+                // return;
             }
         }
 

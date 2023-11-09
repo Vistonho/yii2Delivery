@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\VarDumper;
+use app\models\Role;
 
 /**
  * This is the model class for table "user".
@@ -38,7 +40,7 @@ class RegisterForm extends \yii\base\Model
     public string $password_repeat = '';
     public string|null $photo = '';
     public bool $rules = true;
- 
+
     /**
      * {@inheritdoc}
      */
@@ -76,5 +78,25 @@ class RegisterForm extends \yii\base\Model
         ];
     }
 
-   
+    public function register()
+    {
+        if ($this->validate()) {
+            
+            $user = new User();
+            
+            $user->load($this->attributes, '');
+            $user->password = Yii::$app->security->generatePasswordHash($this->password);
+            $user->auth_key = Yii::$app->security->generateRandomString();
+            $user->role_id = Role::getRole('client');
+            $user->photo = 'profile.jpg';
+            
+            if (!$user->save()) {
+                VarDumper::dump($user->errors, 10, true);
+            }
+
+            return $user ?? false;
+        } else {
+            // VarDumper::dump($this->errors, 10, true); 
+        }
+    }
 }
