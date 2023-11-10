@@ -140,4 +140,14 @@ class OrderController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+    public function actionSetStatus($id, $status)
+    {
+        // var_dump($id, $status);
+        if ($model = Order::findOne($id)) {
+            $model->status_id = $status;
+            $model->save();
+            return $this->redirect('index');
+        }
+    }
 }
