@@ -51,7 +51,8 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                         ['class' => 'nav-link btn btn-link logout']
                     )
                     . Html::endForm()
-                    . '</li>'
+                    . '</li>',
+            !Yii::$app->user->isGuest ? ['label' => 'Админ', 'url' => ['/admin']] : '',
         ]
     ]);
     NavBar::end();

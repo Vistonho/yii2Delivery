@@ -17,6 +17,10 @@ $config = [
             'class' => 'app\modules\account\Module',
             'defaultRoute' => 'account',
         ],
+        'admin' => [
+            'class' => 'app\modules\admin\Modules',
+            // 'defaultRoute' => 'admin',
+        ],
     ],
     'components' => [
         'request' => [
