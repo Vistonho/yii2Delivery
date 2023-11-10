@@ -3,10 +3,12 @@
 namespace app\modules\admin\controllers;
 
 use app\models\Order;
+use app\models\Status;
 use app\modules\admin\models\OrderSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\VarDumper;
 
 /**
  * OrderController implements the CRUD actions for Order model.
@@ -38,6 +40,9 @@ class OrderController extends Controller
      */
     public function actionIndex()
     {
+        $status = Status::getStatus();
+        VarDumper::dump($status, 10, true);die;
+
         $searchModel = new OrderSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
