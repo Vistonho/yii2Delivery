@@ -53,4 +53,20 @@ class Status extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Order::class, ['status_id' => 'id']);
     }
+
+    public static function getStatus()
+    {
+        $query = 'SELECT `status`.`id`, `status`.`title` FROM `status`';
+        Yii::$app->db->createCommand($query)->queryAll();
+
+        return (new \yii\db\Query)
+                    ->select([
+                        'status.id',
+                        'status.title',
+                    ])
+                    ->from('status')
+                    ->all()
+                    ;
+
+    }
 }
