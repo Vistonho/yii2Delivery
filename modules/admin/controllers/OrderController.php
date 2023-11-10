@@ -43,7 +43,8 @@ class OrderController extends Controller
     {
         $status = Status::getStatus();
         // VarDumper::dump($status, 10, true);die;
-        VarDumper::dump(array_column($status, 'title', 'id'), 10, true);die;
+        // VarDumper::dump(array_column($status, 'title', 'id'), 10, true);die;
+        // VarDumper::dump(ArrayHelper::map($status, 'id', 'title'), 10, true);die;
 
         $searchModel = new OrderSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
