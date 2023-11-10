@@ -35,7 +35,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'address',
             // 'user_id',
             // 'courier_id',
-            'status_id',
+            // 'status_id',
+            [
+                'label' => 'Статус',
+                'attribute' => 'status_id',
+                'value' => fn($model) => $status[$model->status_id],
+                'filter' => $status,
+            ]
             //'count',
             //'cost',
             //'time_delivery',

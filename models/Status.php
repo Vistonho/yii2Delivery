@@ -61,7 +61,6 @@ class Status extends \yii\db\ActiveRecord
 
         return (new \yii\db\Query)
                     ->select([
-                        'status.id',
                         'status.title',
                     ])
                     ->from('status')
