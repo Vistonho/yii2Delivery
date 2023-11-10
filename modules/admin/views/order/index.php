@@ -41,6 +41,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'status_id',
                 'value' => fn($model) => $status[$model->status_id],
                 'filter' => $status,
+            ], 
+            [
+                'label' => 'Действия',
+                'format' => 'html',
+                'value' => function($model) {
+                    return "<div>" 
+                        . Html::a('Принять', ['set-status', 'id' => $model->id, 'status' => 1], ['class' => 'btn btn-outline-success d-block'])
+                        . Html::a('Отменить', ['set-status', 'id' => $model->id, 'status' => 2], ['class' => 'btn btn-outline-danger d-block'])
+                        . "</div>"
+                        ;
+                }
             ]
             //'count',
             //'cost',
