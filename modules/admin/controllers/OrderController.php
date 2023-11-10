@@ -8,6 +8,7 @@ use app\modules\admin\models\OrderSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 use yii\helpers\VarDumper;
 
 /**
@@ -41,7 +42,8 @@ class OrderController extends Controller
     public function actionIndex()
     {
         $status = Status::getStatus();
-        VarDumper::dump($status, 10, true);die;
+        // VarDumper::dump($status, 10, true);die;
+        VarDumper::dump(array_column($status, 'title', 'id'), 10, true);die;
 
         $searchModel = new OrderSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
