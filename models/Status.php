@@ -56,8 +56,8 @@ class Status extends \yii\db\ActiveRecord
 
     public static function getStatus()
     {
-        $query = 'SELECT `status`.`id`, `status`.`title` FROM `status`';
-        Yii::$app->db->createCommand($query)->queryAll();
+        // $query = 'SELECT `status`.`id`, `status`.`title` FROM `status`';
+        // Yii::$app->db->createCommand($query)->queryAll();
 
         return (new \yii\db\Query)
                     ->select([
@@ -65,7 +65,8 @@ class Status extends \yii\db\ActiveRecord
                         'status.title',
                     ])
                     ->from('status')
-                    ->all()
+                    ->indexBy('id')
+                    ->column()
                     ;
 
     }
