@@ -11,9 +11,14 @@ use Yii;
  * @property string $title
  * @property string $image
  * @property int $category_id
+ *
+ * @property Category $category
  */
 class ProductTest extends \yii\db\ActiveRecord
 {
+
+    public $imageFile;
+
     /**
      * {@inheritdoc}
      */
@@ -31,6 +36,9 @@ class ProductTest extends \yii\db\ActiveRecord
             [['title', 'image', 'category_id'], 'required'],
             [['category_id'], 'integer'],
             [['title', 'image'], 'string', 'max' => 255],
+            [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::class, 'targetAttribute' => ['category_id' => 'id']],
+            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
+
         ];
     }
 
@@ -43,7 +51,17 @@ class ProductTest extends \yii\db\ActiveRecord
             'id' => 'ID',
             'title' => 'Title',
             'image' => 'Image',
-            'category_id' => 'Category ID',
+            'category_id' => 'Категория товара',
         ];
+    }
+
+    /**
+     * Gets query for [[Category]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCategory()
+    {
+        return $this->hasOne(Category::class, ['id' => 'category_id']);
     }
 }

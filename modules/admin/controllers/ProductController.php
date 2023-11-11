@@ -2,6 +2,7 @@
 
 namespace app\modules\admin\controllers;
 
+use app\models\Category;
 use app\models\ProductTest;
 use app\modules\admin\models\ProductSearch;
 use yii\web\Controller;
@@ -41,6 +42,8 @@ class ProductController extends Controller
         $searchModel = new ProductSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
+
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -69,6 +72,8 @@ class ProductController extends Controller
     {
         $model = new ProductTest();
 
+        $category = Category::getCategory();
+
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
@@ -79,6 +84,7 @@ class ProductController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'category' => $category,
         ]);
     }
 

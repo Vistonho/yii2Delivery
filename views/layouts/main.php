@@ -52,7 +52,9 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                     )
                     . Html::endForm()
                     . '</li>',
-            !Yii::$app->user->isGuest ? ['label' => 'Админ', 'url' => ['/admin']] : '',
+            ['label' => 'Админ', 'url' => ['/admin']],
+            ['label' => 'Аккаунт', 'url' => ['/account']],
+            ['label' => 'Регистрация', 'url' => ['/site/register']],
         ]
     ]);
     NavBar::end();
