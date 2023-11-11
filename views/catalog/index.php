@@ -22,15 +22,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= ListView::widget([
         'dataProvider' => $dataProvider,
-        'layout' => "{pager}\n{summary}\n<div class='mt-3'>{pager}</div>",
+        // 'layout' => "{pager}\n{summary}\n<div class='mt-3'>{pager}</div>",
+        'layout' => "{pager}\n{items}\n<div class='mt-3'>{pager}</div>",
         'pager' => [
             'class' => \yii\bootstrap5\LinkPager::class,
             'linkOptions' => ['class' => 'page-link mt-5'],
         ],
         'itemOptions' => ['class' => 'item'],
-        'itemView' => function ($model, $key, $index, $widget) {
-            return Html::a(Html::encode($model->title), ['view', 'id' => $model->id]);
-        },
+        'itemView' => 'item',
     ]) ?>
 
     <?php Pjax::end(); ?>
