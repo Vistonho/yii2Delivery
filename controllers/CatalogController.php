@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Category;
 use app\models\ProductTest;
 use app\models\ProductTestSearch;
 use yii\web\Controller;
@@ -55,8 +56,11 @@ class CatalogController extends Controller
      */
     public function actionView($id)
     {
+        $category = Category::getCategory();
+        
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'category' => $category,
         ]);
     }
 

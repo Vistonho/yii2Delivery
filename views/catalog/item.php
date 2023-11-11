@@ -4,7 +4,7 @@ use yii\bootstrap5\Html;
 
 ?>
 
-<div class="card" style="width: 18rem;">
+<div class="card" style="width: 18rem; height: 25rem;">
     <!-- <img src="..." class="card-img-top" alt="..."> -->
     <?= Html::img('@web/img/' . $model->image, ['class' => 'card-img-top', 'alt' => '...']); ?>
     <div class="card-body">
