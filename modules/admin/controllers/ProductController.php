@@ -59,8 +59,11 @@ class ProductController extends Controller
      */
     public function actionView($id)
     {
+        $category = Category::getCategory();
+        
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'category' => $category,
         ]);
     }
 

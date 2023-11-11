@@ -36,7 +36,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'html',
                 'value' => Html::img('@web/img/' . $model->image, ['class' => 'image-min']),
             ],
-            'category_id',
+            [   
+                'attribute' => 'category_id',
+                // 'format' => 'html',
+                'value' => $category[$model->category_id],
+            ],
+            // 'category_id',
         ],
     ]) ?>
 
