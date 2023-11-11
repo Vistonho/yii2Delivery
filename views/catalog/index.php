@@ -17,15 +17,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Create Product Test', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
     <?php Pjax::begin(); ?>
-    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= ListView::widget([
         'dataProvider' => $dataProvider,
+        'layout' => "{pager}\n{summary}\n<div class='mt-3'>{pager}</div>",
+        'pager' => [
+            'class' => \yii\bootstrap5\LinkPager::class,
+            'linkOptions' => ['class' => 'page-link mt-5'],
+        ],
         'itemOptions' => ['class' => 'item'],
         'itemView' => function ($model, $key, $index, $widget) {
             return Html::a(Html::encode($model->title), ['view', 'id' => $model->id]);
