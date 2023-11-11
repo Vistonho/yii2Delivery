@@ -49,8 +49,8 @@ class ProductTest extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'image' => 'Image',
+            'title' => 'Наименование товара',
+            'image' => 'Изображение товара',
             'category_id' => 'Категория товара',
         ];
     }

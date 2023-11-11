@@ -31,9 +31,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'title',
-            'image',
+            [   
+                'attribute' => 'image',
+                'format' => 'html',
+                'value' => Html::img('@web/img/' . $model->image, ['class' => 'image-min']),
+            ],
             'category_id',
         ],
     ]) ?>
+
+    <?php $this->registerCssFile('@web/css/product.css'); ?>
 
 </div>
