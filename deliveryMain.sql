@@ -3,11 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
-<<<<<<< HEAD:delivery(1).sql
--- Время создания: Ноя 11 2023 г., 10:21
-=======
--- Время создания: Ноя 11 2023 г., 10:14
->>>>>>> refs/remotes/origin/quickRegister:delivery.sql
+-- Время создания: Ноя 11 2023 г., 10:55
 -- Версия сервера: 8.0.30
 -- Версия PHP: 8.1.9
 
@@ -77,7 +73,6 @@ CREATE TABLE `order` (
   `time_delivery` timestamp NOT NULL,
   `pay_type_id` int UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-<<<<<<< HEAD:delivery(1).sql
 
 --
 -- Дамп данных таблицы `order`
@@ -85,8 +80,6 @@ CREATE TABLE `order` (
 
 INSERT INTO `order` (`id`, `created_at`, `address`, `user_id`, `courier_id`, `status_id`, `count`, `cost`, `time_delivery`, `pay_type_id`) VALUES
 (2, '2023-11-10 10:46:29', 'Радиотехнический колледж', 10, 8, 1, 5, 15, '2023-11-10 10:46:29', 1);
-=======
->>>>>>> refs/remotes/origin/quickRegister:delivery.sql
 
 -- --------------------------------------------------------
 
@@ -140,6 +133,19 @@ CREATE TABLE `product` (
   `shelf_life` varchar(255) NOT NULL,
   `category_id` int UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `product_test`
+--
+
+CREATE TABLE `product_test` (
+  `id` int NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `category_id` int UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -209,11 +215,7 @@ CREATE TABLE `status` (
 INSERT INTO `status` (`id`, `title`) VALUES
 (1, 'status1'),
 (2, 'status2'),
-<<<<<<< HEAD:delivery(1).sql
 (3, 'status3');
-=======
-(3, 'status3\r\n');
->>>>>>> refs/remotes/origin/quickRegister:delivery.sql
 
 -- --------------------------------------------------------
 
@@ -241,13 +243,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `surname`, `patronymic`, `login`, `email`, `phone`, `password`, `photo`, `role_id`, `created_at`, `auth_key`) VALUES
-(7, 'admin', 'admin', 'admin', 'admin', 'admin@admin.ru', '123', '$2y$13$XoDYiio0UrK4JXBHgtjzQuLwX7kT146KCnR/LbIzhWl2sCJgFizou', 'VNLMt.jpg', 1, '2023-11-05 09:48:31', 'KXCA0O8OFud886hLwe2BvuYzD53ZospB'),
+(7, 'admin', 'admin', 'admin', 'admin', 'admin@admin.ru', '123', '$2y$13$XoDYiio0UrK4JXBHgtjzQuLwX7kT146KCnR/LbIzhWl2sCJgFizou', 'owW8h.png', 2, '2023-11-05 09:48:31', 'KXCA0O8OFud886hLwe2BvuYzD53ZospB'),
+(8, 'qwe', 'qwe', 'qwe', 'qwe', 'qwe@qwe.ru', 'qwe', '$2y$13$gb/EJcEkPee8eJkZRQBpfurqQANQNQISPzyjKvnrLtqH2xJv5QiJy', 'profile.jpg', 2, '2023-11-05 09:49:18', '1yRQ5fBRigtoMMlJSw6lCYaJc7KGLW52'),
 (9, 'qwe', 'qwe', 'qwe', 'www', 'www@www.ru', '123', '$2y$13$UGoESvUDf6RgaFHCtpW2Uur0UbnCchhUKnJ4SgQ30dg3xXhnZp3Oa', 'profile.jpg', 2, '2023-11-05 09:53:05', '2S0fI-Me-TMUzOb9o6gBw1tLMEriM4-G'),
-<<<<<<< HEAD:delivery(1).sql
 (10, 'qwe', 'qwe', 'qwe', 'qwe123', 'qwe123@qwe.ru', 'qwe', '$2y$13$qEHVFW3Jgrx5bOXB5UXfKutusTPOlTmvPWjhwvgZEUd9WOwCjJ2hu', 'profile.jpg', 2, '2023-11-09 07:15:42', 'rJHR-8mg5nHub80aqD_O8bZDuRFeLcfI');
-=======
-(10, 'www', 'qwe', 'qwe', 'qwe', 'qwe@qwe.ru', 'qwe', '$2y$13$WDI3FftgV1CLR2ioeRMOteJHUXW6CHuxuLb.4MTThN.HRv9yte0/y', 'profile.jpg', 2, '2023-11-06 11:48:00', 'KXlYeiLbENysAObbbLJPJQlEMmdGJa1d');
->>>>>>> refs/remotes/origin/quickRegister:delivery.sql
 
 -- --------------------------------------------------------
 
@@ -324,6 +323,12 @@ ALTER TABLE `product`
   ADD KEY `category_id` (`category_id`);
 
 --
+-- Индексы таблицы `product_test`
+--
+ALTER TABLE `product_test`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `promotion`
 --
 ALTER TABLE `promotion`
@@ -387,11 +392,7 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT для таблицы `order`
 --
 ALTER TABLE `order`
-<<<<<<< HEAD:delivery(1).sql
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-=======
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
->>>>>>> refs/remotes/origin/quickRegister:delivery.sql
 
 --
 -- AUTO_INCREMENT для таблицы `order_item`
@@ -410,6 +411,12 @@ ALTER TABLE `pay_type`
 --
 ALTER TABLE `product`
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `product_test`
+--
+ALTER TABLE `product_test`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `promotion`
