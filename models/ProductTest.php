@@ -33,7 +33,7 @@ class ProductTest extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'image', 'category_id'], 'required'],
+            [['title', 'category_id'], 'required'],
             [['category_id'], 'integer'],
             [['title', 'image'], 'string', 'max' => 255],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::class, 'targetAttribute' => ['category_id' => 'id']],
@@ -63,5 +63,17 @@ class ProductTest extends \yii\db\ActiveRecord
     public function getCategory()
     {
         return $this->hasOne(Category::class, ['id' => 'category_id']);
+    }
+
+    public function upload()
+    {
+        if ($this->validate()) { 
+            $fileName = time() . Yii::$app->security->generateRandomString(5) . '.' . $this->imageFile->extension;
+            $this->imageFile->saveAs('img/' . $fileName);
+            $this->image = $fileName;
+            return true;
+        } else {
+            return false;
+        }
     }
 }
