@@ -6,6 +6,7 @@ $db = require __DIR__ . '/db.php';
 $config = [
     'id' => 'basic',
     'language' => "ru-RU",
+    'defaultRoute' => 'catalog',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'aliases' => [
