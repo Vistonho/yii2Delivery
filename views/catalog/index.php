@@ -17,6 +17,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+    <div class="m-5">
+        <div>Сортировка: </div>
+        <?= $dataProvider->sort->link('id') . ' | ' . $dataProvider->sort->link('title') ?>
+    </div>
+    
+
     <?php Pjax::begin(); ?>
     <?php $this->render('_search', ['model' => $searchModel]); ?>
 
