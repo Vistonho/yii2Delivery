@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Ноя 11 2023 г., 10:55
+-- Время создания: Ноя 11 2023 г., 14:43
 -- Версия сервера: 8.0.30
 -- Версия PHP: 8.1.9
 
@@ -146,6 +146,24 @@ CREATE TABLE `product_test` (
   `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `category_id` int UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Дамп данных таблицы `product_test`
+--
+
+INSERT INTO `product_test` (`id`, `title`, `image`, `category_id`) VALUES
+(1, 'qwerty', '1699696723I_8A9.jpg', 1),
+(2, 'qwe', '1699696760vSrqq.jpg', 3),
+(3, 'asddfs', '1699696760vSrqq.jpg', 3),
+(4, 'ddfsd', '1699696723I_8A9.jpg', 1),
+(5, 'qwedvvdf', '1699696760vSrqq.jpg', 3),
+(6, 'uyuyiiui', '1699696760vSrqq.jpg', 3),
+(7, 'qwerty', '1699696723I_8A9.jpg', 1),
+(8, 'qwe', '1699696760vSrqq.jpg', 3),
+(9, 'asddfs', '1699696760vSrqq.jpg', 3),
+(10, 'ddfsd', '1699696723I_8A9.jpg', 1),
+(11, 'qwedvvdf', '1699696760vSrqq.jpg', 3),
+(12, 'uyuyiiui', '1699696760vSrqq.jpg', 3);
 
 -- --------------------------------------------------------
 
@@ -326,7 +344,8 @@ ALTER TABLE `product`
 -- Индексы таблицы `product_test`
 --
 ALTER TABLE `product_test`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `category_id` (`category_id`);
 
 --
 -- Индексы таблицы `promotion`
@@ -416,7 +435,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT для таблицы `product_test`
 --
 ALTER TABLE `product_test`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT для таблицы `promotion`
@@ -486,6 +505,12 @@ ALTER TABLE `order_item`
 --
 ALTER TABLE `product`
   ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `product_test`
+--
+ALTER TABLE `product_test`
+  ADD CONSTRAINT `product_test_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ограничения внешнего ключа таблицы `report`
